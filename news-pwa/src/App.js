@@ -11,7 +11,8 @@ class App extends Component {
   constructor(){
     super();
     this.state={
-      newsData:[]
+      newsData:[],
+      initialNewsData:[]
     }
   }
   componentDidMount(){
@@ -20,16 +21,24 @@ class App extends Component {
         return results.json()
       }).then(data =>{
       this.setState({newsData:data.articles})
-      console.log(data)
-      console.log(this.state.newsData)
+      this.setState({initialNewsData:data.articles})
     })
+  }
+  filterNews=(event)=>{
+    var updatedList = this.state.initialNewsData;
+    updatedList = updatedList.filter(function(item){
+      return item.title.toLowerCase().search(
+          event.target.value.toLowerCase()) !== -1;
+    });
+    console.log(updatedList);
+    this.setState({newsData: updatedList});
   }
 
   render() {
     const newsData = this.state.newsData
     return (
       <div className="App">
-        <NavBar/>
+        <NavBar filterNews={this.filterNews}/>
         <div className="row">
         {newsData.map((news, index) =>
             <div className="col-sm-12" key={index}>
