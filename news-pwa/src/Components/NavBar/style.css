@@ -1,0 +1,6 @@
+.navbar-color{
+    background-color: #007bff!important;
+}
+.navbar-dark .navbar-brand{
+    flex: auto !important;
+}
