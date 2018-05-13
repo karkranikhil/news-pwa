@@ -39,13 +39,10 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar filterNews={this.filterNews}/>
-        <div className="row">
+
         {newsData.map((news, index) =>
-            <div className="col-sm-12" key={index}>
-              <NewsCard news={news}/>
-            </div>
+              <NewsCard news={news} key={index}/>
         )}
-        </div>
       </div>
     );
   }
